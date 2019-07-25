@@ -53,7 +53,7 @@ public class RulesBase
     }
 
     /*
-     * Elimina por comparacion la regla que se le pase por parametro.
+     * Elimina por comparación la regla que se le pase por parametro.
      * r -> Regla que se desea borrar.
      */
     public void delete(Rule r)

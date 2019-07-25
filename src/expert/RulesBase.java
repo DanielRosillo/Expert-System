@@ -3,7 +3,7 @@ import java.util.LinkedList;
 /**
  * @author Daniel Rosillo;
  * Esta clase representa la libreria de todas las reglas del motor de inferencia.
- * Aqui se guardan los Hechos que el agente sabe con certeza que son ciertos, no confundir con la base de eventos.
+ * Aqui se guardan los Eventos que el agente sabe con certeza que son ciertos, no confundir con la base de eventos.
  */
 public class RulesBase
 {

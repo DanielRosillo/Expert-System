@@ -7,7 +7,7 @@ public class Factory
 {
     /*
      * Al invocar este metodo se crea un hecho a partir de un evento disponible, estos estados son suministrados por la base de reglas y su disponibilidad.
-     * @h -> Evento que al ejecutarce (llenar de información), se convierte en un Hecho.
+     * @h -> Evento que al ejecutarce (obtener de información), se convierte en un Hecho.
      * @m -> Motor de inferencia en turno.
      */
     static Context event(Context h, InferenceEngine m)
@@ -18,15 +18,15 @@ public class Factory
 	    Class<? extends Context> clase = h.getClass();
 
 	    //Identificamos el tipo de evento, booleano o entero.
-	    if (clase.equals(Class.forName("expert.Event")))
+	    if (clase.equals(Class.forName("expert.Event")))//Si el evento es de tipo entero.
 	    {
-		int value = m.getValue(h.question());//Solicita el valor mediante la interfaz.
-		event = new IntEvent(h.Name(), value, null, 0);//Crea un nuevo hecho con l nueva información.
+		int value = m.getValue(h.question());//Solicita el valor mediante interfaz al usuario.
+		event = new IntEvent(h.Name(), value, null, 0);//Crea un nuevo hecho.
 	    }
 	    else//Si el evento es de tipo booleano.
 	    {
-		boolean valorb = m.getValueBool(h.question());//Solicita el valor mediante la interfaz.
-		event = new BoolEvent(h.Name(), valorb, null, 0);//Crea un nuevo hecho con l nueva información.
+		boolean valorb = m.getValueBool(h.question());//Solicita el valor mediante interfaz al usuario.
+		event = new BoolEvent(h.Name(), valorb, null, 0);//Crea un nuevo hecho.
 	    }
 	    return event;
 	}
@@ -37,7 +37,7 @@ public class Factory
     }
 
     /*
-     * Al invocar este metodo es posible crear un evento mediante una sentencia, esta sentencia puede ser de tipo:
+     * Con este metodo es posible crear un evento mediante una sentencia, esta sentencia puede ser de tipo:
      * 
      *  1- Entero.
      *  2.- Booleano.
@@ -52,7 +52,7 @@ public class Factory
 	if (eventStr.contains("="))//Verificamos si la sentencia es de tipo entero.
 	{
 	    eventStr = eventStr.replaceFirst("^" + "\\(", "");//Mapeamos la cadena.
-	    String[] aux = eventStr.split("[=()]");//Seccionamos los datos a interpretar.
+	    String[] aux = eventStr.split("[=()]");//Seccionamos los datos para interpretarlos.
 
 	    if (aux.length >= 2)
 	    {
@@ -76,8 +76,8 @@ public class Factory
 		value = false;//Es negativo.
 		eventStr = eventStr.substring(1).trim();
 	    }
-	    eventStr = eventStr.replaceFirst("^" + "\\(", "");
-	    String[] aux = eventStr.split("[=()]");
+	    eventStr = eventStr.replaceFirst("^" + "\\(", "");//Mapeamos la cadena.
+	    String[] aux = eventStr.split("[=()]");//Seccionamos los datos para interpretarlos.
 	    String pregunta = null;
 	    /*
 	     *  Es un evento correcto.
@@ -88,7 +88,7 @@ public class Factory
 	    }
 	    return new BoolEvent(aux[0].trim(), value, pregunta, 0);
 	}
-	return null;//Sintaxis incorrecta.
+	return null;//Si llega aqui: Sintaxis incorrecta.
 
     }
 

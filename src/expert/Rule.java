@@ -27,7 +27,7 @@ public class Rule
     }
 
     /*
-     * Asigna una lista de hechos como premisas de una regla.
+     * Asigna una lista de eventos como premisas de una regla.
      * @premises -> Lista de hechos.
      */
     public void setPremises(LinkedList<Context> premises)
@@ -44,7 +44,7 @@ public class Rule
     }
 
     /*
-     * Asigna el hecho que se le pase por parametro como conclución.
+     * Asigna el evento que se le pase por parametro como conclución.
      */
     public void setConclucion(Context conclucion)
     {

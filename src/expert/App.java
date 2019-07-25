@@ -6,14 +6,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 /*
  * Sistema Experto
- * Problema de juguete: "Adivinar" en que triangulo piensa el usuario.
+ * Problema de juguete: Adivinar en que triangulo piensa el usuario.
  * Lógica de programación: Inteligencia Artificial para desarrolladores: Conceptos e implementación en java
  * Autor: Virginie MATHIVET
  * Implementación y optimización: DanielRosillo;
  * GitHub:@DanielRosillo
  * 
- * Esta clase representa a un sistema experto.
-
+ * Esta clase representa un sistema experto.
  */
 public class App implements HMI
 {
@@ -88,10 +87,11 @@ public class App implements HMI
 	app.run();
     }
 
-    /*
-     *  1.- Crea un motor de inferencia.
-     *  2.- Carga las reglas al motor.
-     *  3.- Invoca el metodo principal del motor.
+    /* Algoritmo de ejecución:
+     * 
+     *  1.- Crear un motor de inferencia.
+     *  2.- Cargar las reglas al motor.
+     *  3.- Invocar el metodo principal del motor.
      */
     public void run()
     {
@@ -100,6 +100,7 @@ public class App implements HMI
 
 	InferenceEngine Ie = new InferenceEngine(this);
 	 
+	//Reglas
 	Ie.addRule("R1 : IF (Orden=3(¿Cuál es el orden?)) THEN Triángulo"); 
 	Ie.addRule("R2 : IF (Triángulo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Triángulo Rectángulo");
 	Ie.addRule("R3 : IF (Triángulo AND Lados Iguales-2(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Isósceles"); 
@@ -115,7 +116,6 @@ public class App implements HMI
 	System.out.println(" *** Solucion ***");
 	Ie.Think();
 	System.exit(0);
-
     }
 
 }

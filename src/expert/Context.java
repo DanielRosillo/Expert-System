@@ -1,7 +1,8 @@
 package expert;
 /**
  * @author Daniel Rosillo;
- * Esta clase representa el contexto de de los eventos.
+ * Esta clase representa el contexto de trabajo de los eventos.
+ * Un evento pasa a ser un hecho cuando el agente adquiere informacion de el, las reglas se conforman de eventos cuyo valor se toma como cierto. 
  */
 public interface Context
 {
@@ -13,6 +14,6 @@ public interface Context
 
     public String question();//Pregunta del evento.
 
-    void setLevel(int l);
+    void setLevel(int l);//Asignar nivel de inferencia.
 
 }

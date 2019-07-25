@@ -5,10 +5,10 @@ package expert;
  */
 public class IntEvent implements Context
 {
-    protected String name;
-    protected int value;
-    protected int level;
-    protected String question;
+    protected String name;//Nombre
+    protected int value;//Valor
+    protected int level;//Nivel del inferencia.
+    protected String question;//Pregunta asociada.
 
     public IntEvent(String name, int value, String question, int level)
     {

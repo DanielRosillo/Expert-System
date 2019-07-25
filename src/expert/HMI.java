@@ -4,7 +4,7 @@ import java.util.LinkedList;
 /**
  * @author Daniel Rosillo;
  * La Interfaz Humano-Maquina es la parte del sistema que se comunica con el usuario.
- * Entiéndase como interfaz, todas aquellas funciones interactivas del sistema, que proporcionan información de utilidad.
+ * Entiéndase como interfaz, todas aquellas funciones interactivas del sistema que proporcionan información de utilidad.
  */
 public interface HMI
 {

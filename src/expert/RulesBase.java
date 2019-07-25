@@ -45,7 +45,7 @@ public class RulesBase
 
     /*
      * Agrega una regla por parametro.
-     * r -> Regla que se quiere agregar.
+     * r -> Regla a agregar.
      */
     public void add(Rule r)
     {
@@ -54,7 +54,7 @@ public class RulesBase
 
     /*
      * Elimina por comparación la regla que se le pase por parametro.
-     * r -> Regla que se desea borrar.
+     * r -> Regla a borrar.
      */
     public void delete(Rule r)
     {

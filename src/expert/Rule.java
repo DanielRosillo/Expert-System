@@ -1,15 +1,16 @@
 package expert;
+
 import java.util.LinkedList;
 import java.util.StringJoiner;
+
 /**
- * @author Daniel Rosillo;
- * Esta clase representa una regla.
+ * @author Daniel Rosillo; Esta clase representa una regla.
  */
 public class Rule
 {
-    protected LinkedList<Context> premises;//Premisas que conforman la regla.
-    protected Context conclucion;//Hecho resultado de las premisas.
-    protected String name;//Nombre de la regla.
+    protected LinkedList<Context> premises;// Premisas que conforman la regla.
+    protected Context conclucion;// Hecho resultado de las premisas.
+    protected String name;// Nombre de la regla.
 
     public Rule(String name, LinkedList<Context> premises, Context conclucion)
     {
@@ -28,13 +29,14 @@ public class Rule
 
     /*
      * Asigna una lista de eventos como premisas de una regla.
+     * 
      * @premises -> Lista de hechos.
      */
     public void setPremises(LinkedList<Context> premises)
     {
 	this.premises = premises;
     }
-    
+
     /*
      * Retorna la conclusión de la regla.
      */
@@ -50,7 +52,7 @@ public class Rule
     {
 	this.conclucion = conclucion;
     }
-    
+
     /*
      * Retrona el nombre de la regla.
      */

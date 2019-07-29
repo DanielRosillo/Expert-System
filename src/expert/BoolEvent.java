@@ -1,14 +1,14 @@
 package expert;
+
 /**
- * @author Daniel Rosillo;
- * Esta clase representa un evento de tipo booleano.
+ * @author Daniel Rosillo; Esta clase representa un evento de tipo booleano.
  */
 public class BoolEvent implements Context
 {
-    protected String name;//Nombre del evento.
-    protected boolean value;//Valor real del evento.
-    protected int level;//Nivel de inferencia.
-    protected String question;//Pregunta del evento.
+    protected String name;// Nombre del evento.
+    protected boolean value;// Valor real del evento.
+    protected int level;// Nivel de inferencia.
+    protected String question;// Pregunta del evento.
 
     @Override
     public String Name()

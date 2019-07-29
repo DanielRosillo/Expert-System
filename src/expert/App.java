@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.LinkedList;
+
 /*
  * Sistema Experto
  * Problema de juguete: Adivinar en que triangulo piensa el usuario.
@@ -16,7 +17,7 @@ import java.util.LinkedList;
  */
 public class App implements HMI
 {
-    private StringBuilder builder;//Variable multiusos para mostrar datos por consola.
+    private StringBuilder builder;// Variable multiusos para mostrar datos por consola.
 
     @Override
     public void showEvent(LinkedList<Context> events)
@@ -25,7 +26,7 @@ public class App implements HMI
 	Collections.sort(events, (Context f1, Context f2) ->
 	{
 	    if (f1.Level() == f2.Level()) return 0;
- 
+
 	    else if (f1.Level() > f2.Level()) return -1;
 
 	    else return 1;
@@ -37,6 +38,7 @@ public class App implements HMI
 
     /*
      * Muestra por consola una lista de reglas que se le pasen por parametro.
+     * 
      * @rules -> Lista enlazada de reglas.
      */
     public void showRules(LinkedList<Rule> rules)
@@ -80,40 +82,46 @@ public class App implements HMI
 
     }
 
-    //Inicio de la aplicación.
-    public static void main(String[] ...args)
+    // Inicio de la aplicación.
+    public static void main(String[] args)
     {
 	App app = new App();
 	app.run();
     }
 
-    /* Algoritmo de ejecución:
+    /*
+     * Algoritmo de ejecución:
      * 
-     *  1.- Crear un motor de inferencia.
-     *  2.- Cargar las reglas al motor.
-     *  3.- Invocar el metodo principal del motor.
+     * 1.- Crear un motor de inferencia. 2.- Cargar las reglas al motor. 3.- Invocar
+     * el metodo principal del motor.
      */
     public void run()
     {
-	System.out.println(" *** Creacion del Motor ***");
+	System.out.println(" *** Creación del Motor ***");
 	System.out.println(" *** Agregar Reglas ***");
 
 	InferenceEngine Ie = new InferenceEngine(this);
-	 
-	//Reglas
-	Ie.addRule("R1 : IF (Orden=3(¿Cuál es el orden?)) THEN Triángulo"); 
-	Ie.addRule("R2 : IF (Triángulo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Triángulo Rectángulo");
-	Ie.addRule("R3 : IF (Triángulo AND Lados Iguales-2(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Isósceles"); 
-	Ie.addRule("R4 : IF (Triángulo rectángulo AND Triángulo Isósceles) THEN Triángulo Rectángulo Isósceles"); 
-	Ie.addRule("R5 : IF (Triángulo AND Lados Iguales=3(¿Cuántos lado, iguales, tiene la figura?)) THEN Triángulo Equilátero");
-	Ie.addRule("R6 : IF (Orden=4(¿Cuál es el orden?)) THEN Cuadrilátero"); 
-	Ie.addRule("R? : IF (Cuadrilátero AND Lados Paralelosa2(¿Cuántos lados paralelos entre si - O, 2 o 47)) THEN Trapecio"); 
-	Ie.addRule("RO : IF (Cuadrilátero AND Lados Paralelos=4(¿Cuántos lados paralelos entre si - O, 2 o 4?)) TREN Paralelogramo"); 
-	Ie.addRule("R9 : IF (Paralelogramo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Rectángulo"); 
-	Ie.addRule("R10 : IF (Paralelogramo AND Lados Iguales=4(¿Cuantos lados iguales tiene la figura?)) THEN Rombo"); 
-	Ie.addRule("R11 : IF (Rectángulo AND Rombo THEN Cuadrado"); 
-	
-	System.out.println(" *** Solucion ***");
+
+	// Reglas
+	Ie.addRule("R1 : IF (Orden=3(¿Cuál es el orden?)) THEN Triángulo");
+	Ie.addRule(
+		"R2 : IF (Triángulo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Triángulo Rectángulo");
+	Ie.addRule(
+		"R3 : IF (Triángulo AND Lados Iguales=2(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Isósceles");
+	Ie.addRule("R4 : IF (Triángulo Rectángulo AND Triángulo Isósceles) THEN Triángulo Rectángulo Isósceles");
+	Ie.addRule(
+		"R5 : IF (Triángulo AND Lados Iguales=3(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Equilátero");
+
+	Ie.addRule("R6 : IF (Orden=4(¿Cuál es el orden?)) THEN Cuadrilátero");
+	Ie.addRule(
+		"R7 : IF (Cuadrilátero AND Lados Paralelos=2(¿Cuántos lados paralelos entre si - O, 2 o 4?)) THEN Trapecio");
+	Ie.addRule(
+		"R8 : IF (Cuadrilátero AND Lados Paralelos=4(¿Cuántos lados paralelos entre si - O, 2 o 4?)) THEN Paralelogramo");
+	Ie.addRule(
+		"R9 : IF (Paralelogramo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Rectángulo");
+	Ie.addRule("R10 : IF (Paralelogramo AND Lados Iguales=4(¿Cuantos lados iguales tiene la figura?)) THEN Rombo");
+	Ie.addRule("R11 : IF (Rectángulo AND Rombo THEN Cuadrado");
+	System.out.println(" *** Solución ***");
 	Ie.Think();
 	System.exit(0);
     }

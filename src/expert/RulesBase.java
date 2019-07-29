@@ -1,13 +1,16 @@
 package expert;
+
 import java.util.LinkedList;
+
 /**
- * @author Daniel Rosillo;
- * Esta clase representa la libreria de todas las reglas del motor de inferencia.
- * Aqui se guardan los Eventos que el agente sabe con certeza que son ciertos, no confundir con la base de eventos.
+ * @author Daniel Rosillo; Esta clase representa la libreria de todas las reglas
+ *         del motor de inferencia. Aqui se guardan los Eventos que el agente
+ *         sabe con certeza que son ciertos, no confundir con la base de
+ *         eventos.
  */
 public class RulesBase
 {
-    protected LinkedList<Rule> rules;//Reglas del universo.
+    protected LinkedList<Rule> rules;// Reglas del universo.
 
     public RulesBase()
     {
@@ -44,8 +47,7 @@ public class RulesBase
     }
 
     /*
-     * Agrega una regla por parametro.
-     * r -> Regla a agregar.
+     * Agrega una regla por parametro. r -> Regla a agregar.
      */
     public void add(Rule r)
     {
@@ -53,8 +55,8 @@ public class RulesBase
     }
 
     /*
-     * Elimina por comparación la regla que se le pase por parametro.
-     * r -> Regla a borrar.
+     * Elimina por comparación la regla que se le pase por parametro. r -> Regla a
+     * borrar.
      */
     public void delete(Rule r)
     {

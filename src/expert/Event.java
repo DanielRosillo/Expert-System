@@ -1,16 +1,16 @@
 package expert;
-/**
- * @author Daniel Rosillo;
- * Esta clase representa un evento de tipo booleano.
- */
-public class IntEvent implements Context
-{
-    protected String name;//Nombre
-    protected int value;//Valor
-    protected int level;//Nivel del inferencia.
-    protected String question;//Pregunta asociada.
 
-    public IntEvent(String name, int value, String question, int level)
+/**
+ * @author Daniel Rosillo; Esta clase representa un evento de tipo booleano.
+ */
+public class Event implements Context
+{
+    protected String name;// Nombre
+    protected int value;// Valor
+    protected int level;// Nivel del inferencia.
+    protected String question;// Pregunta asociada.
+
+    public Event(String name, int value, String question, int level)
     {
 	this.name = name;
 	this.value = value;

@@ -1,9 +1,10 @@
 package expert;
 
 import java.util.LinkedList;
+
 /**
- * @author Daniel Rosillo;
- * Esta clase respresenta una base de eventos, basicamente una envoltura de una lista de eventos.
+ * @author Daniel Rosillo; Esta clase respresenta una base de eventos,
+ *         basicamente una envoltura de una lista de eventos.
  */
 public class EventBase
 {
@@ -27,14 +28,16 @@ public class EventBase
     public Context search(String name)
     {
 	for (Context f : events)
+	{
 	    if (f.Name().equals(name)) return f;
-	
-	return null;
+	}
+	return new Event("x", 0, null, 0);
 
     }
 
     /*
      * Recupera el valor de algun evento.
+     * 
      * @name -> nombre del evento.
      */
     public Object retriveValue(String name)

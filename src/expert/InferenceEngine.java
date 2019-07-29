@@ -1,51 +1,55 @@
 package expert;
 
 import java.util.LinkedList;
+
 /**
- * @author Daniel Rosillo;
- * Esta clase representa un motor de inferencia.
+ * @author Daniel Rosillo; Esta clase representa un motor de inferencia.
  */
 public class InferenceEngine
 {
-    private HMI ihm;//Interfaz HMI.
-    private EventBase eb;//Base de hechos.
-    private RulesBase rb;//Base de reglas.
-    private int maxLevel;//Maximo nivel de inferencia alcanzado.
+    private HMI ihm;// Interfaz HMI.
+    private EventBase eb;// Base de hechos.
+    private RulesBase rb;// Base de reglas.
+    private int maxLevel;// Maximo nivel de inferencia alcanzado.
 
     /*
-     * Este metodo agrega una regla al sistema.
-     * Condiciones: La regla debe de ser del tipo lógico "AND".
+     * Este metodo agrega una regla al sistema. Condiciones: La regla debe de ser
+     * del tipo lógico "AND".
+     * 
      * @str -> Regla en formato de texto.
      */
     public void addRule(String str)
     {
-	//Ejemplo de una regla simple-> R2 : IF (Triángulo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Triángulo Rectángulo"
-	String[] aux = str.split(":");//Separamos la regla en partes.
-	
-	//Si la regla contiene 2 partes, es una regla valida.
-	if (aux.length == 2)
+	// Ejemplo de una regla simple-> R2 : IF (Triángulo AND Ángulo Recto(¿La figura
+	// tiene al menos un ángulo recto?)) THEN Triángulo Rectángulo"
+	String[] aux = str.split(":");
+
+	if (aux.length == 2)// Si la regla contiene 2 partes, es una regla valida.
 	{
-	    String name = aux[0].trim();//La primera parte representa el nombre.
-	    String rule = aux[1].trim();//Esta es la parte lógica que hay que interpretar.
+	    String name = aux[0].trim();// La primera parte representa el nombre.
+	    String rule = aux[1].trim();// Esta es la parte lógica que hay que interpretar.
 
 	    rule = rule.replaceFirst("^" + "IF", "");
-	    String[] premisse = rule.split("THEN");//Separa las sentencias lógicas de la regla(condiciones,resultado).
+	    String[] premisse = rule.split("THEN");// Separa las sentencias lógicas de la regla(condiciones,resultado).
 
-	    //Verifica nuevamente si las partes son validas.
+	    // Verifica nuevamente si las partes son validas.
 	    if (premisse.length == 2)
 	    {
-		LinkedList<Context> premises = new LinkedList<>();//Lista con las premisas interpretadas.
-		String[] premisasStr = premisse[0].split(" AND ");//Separar las premisas de la regla.
+		LinkedList<Context> premises = new LinkedList<>();// Lista con las premisas interpretadas.
+		String[] premisasStr = premisse[0].split(" AND ");// Separar las premisas de la regla.
 
 		for (String cadena : premisasStr)
 		{
-		    Context event = Factory.event(cadena.trim());//Crea un evento por cada premisa, recordar que estos eventos se dan por ciertos y componen la regla.
+		    Context event = Factory.event(cadena.trim());// Crea un evento por cada premisa, recordar que estos
+								 // eventos se dan por ciertos y componen la regla.
 		    premises.add(event);
 		}
-		String conclusionStr = premisse[1].trim();//La 2a parte es la conclusión de la regla cuando pasan los eventos.
+		String conclusionStr = premisse[1].trim();// La 2a parte es la conclusión de la regla cuando pasan los
+							  // eventos.
 
-		Context conclusion = Factory.event(conclusionStr);//Se crea el evento de la conclusión.
-		rb.add(new Rule(name, premises, conclusion));//Crea una nueva regla y se agrega a la base de reglas del sistema.
+		Context conclusion = Factory.event(conclusionStr);// Se crea el evento de la conclusión.
+		rb.add(new Rule(name, premises, conclusion));// Crea una nueva regla y se agrega a la base de reglas del
+							     // sistema.
 	    }
 
 	}
@@ -63,8 +67,10 @@ public class InferenceEngine
     }
 
     /*
-     * Metodo de redirección a la interfaz de control que obtiene los valores enteros por consola.
-     * @ question -> Pregunta de la  cual se desea saber el valor.
+     * Metodo de redirección a la interfaz de control que obtiene los valores
+     * enteros por consola.
+     * 
+     * @ question -> Pregunta de la cual se desea saber el valor.
      */
     int getValue(String question)
     {
@@ -72,8 +78,10 @@ public class InferenceEngine
     }
 
     /*
-     * Metodo de redirección a la interfaz de control que obtiene los valores enteros por consola.
-     * @ question -> Pregunta de la  cual se desea saber el valor.
+     * Metodo de redirección a la interfaz de control que obtiene los valores
+     * enteros por consola.
+     * 
+     * @ question -> Pregunta de la cual se desea saber el valor.
      */
     boolean getValueBool(String question)
     {
@@ -82,41 +90,43 @@ public class InferenceEngine
 
     /*
      * Verifica si es posible aplicar una regla en el estado actual.
+     * 
      * @r -> Regla que se desea saber si es aplicable.
      */
     int isApplicable(Rule r)
     {
 	int nivelmax = -1;
 
-	//Recorremos las premisas de la regla para comprobarlas.
+	// Recorremos las premisas de la regla para comprobarlas.
 	for (Context h : r.getPremises())
 	{
-	    
 	    Context event = eb.search(h.Name());
 
-	    if (event == null)//Si el evento no existe.
+	    if (event.Name().equalsIgnoreCase("x"))
+	    {
 		if (h.question() != null)
 		{
-		    //Solicita la información al usuario.
+		    // Solicita la información al usuario.
 		    event = Factory.event(h, this);
-		    eb.add(event);//Agrega el nuevo hecho a la base de eventos.
+		    eb.add(event);// Agrega el nuevo hecho a la base de eventos.
 		}
-	
-		else return -1;//La regla no es aplicable.
-	 
+		else return -1;// La regla no es aplicable.
+	    }
 
 	    /*
 	     * El hecho existe en la base, verifica si ambos valores se corresponden.
 	     */
 	    if (!event.value().equals(h.value())) return -1;
-	    else nivelmax = Math.max(nivelmax, event.Level());//Si es asi, actualiza el nivel actual de inferencia.
-
+	    else nivelmax = Math.max(nivelmax, event.Level());// Si es asi, actualiza el nivel actual de inferencia.
 	}
+
 	return nivelmax;
     }
 
     /*
-     * Busca entre todas las reglas de la base cual puede aplicarse primero, por tanto se basa en si una regla es aplicable o no para el estado actual.
+     * Busca entre todas las reglas de la base cual puede aplicarse primero, por
+     * tanto se basa en si una regla es aplicable o no para el estado actual.
+     * 
      * @bdrLocal -> Reglas a verificar.
      */
     Rule findRule(RulesBase bdrLocal)
@@ -124,8 +134,9 @@ public class InferenceEngine
 	int level;
 	for (Rule r : bdrLocal.getRules())
 	{
-	    level = isApplicable(r);//Si la regla se puede aplicar, se retorna y el valor de inferencia se actualiza para mantener la regla.
-	    if (level != -1)//Si el valor es -1, sicnifica que la regla no es una opción por el momento
+	    level = isApplicable(r);// Si la regla se puede aplicar, se retorna y el valor de inferencia se
+				    // actualiza para mantener la regla.
+	    if (level != -1)// Si el valor es -1, sicnifica que la regla no es una opción por el momento
 	    {
 		maxLevel = level;
 		return r;
@@ -139,24 +150,24 @@ public class InferenceEngine
      */
     public void Think()
     {
-	RulesBase rbLocal = new RulesBase();//Crea una nueva base de reglas vacia.
-	rbLocal.setRules(rb.getRules());//Copia las reglas principales a la base local.
+	RulesBase rbLocal = new RulesBase();// Crea una nueva base de reglas vacia.
+	rbLocal.setRules(rb.getRules());// Copia las reglas principales a la base local.
 
-	eb.clear();//Limpia la base de eventos para evitar errores.
+	eb.clear();// Limpia la base de eventos para evitar errores.
 
-	Rule r = findRule(rbLocal);//Busca la primera regla que aplicar.
+	Rule r = findRule(rbLocal);// Busca la primera regla que aplicar.
 
-	while (r != null)//Mientras exista alguna regla para aplicar.
+	while (r != null)// Mientras exista alguna regla para aplicar.
 	{
-	    //Genera el evento apartir de la regla.
+	    // Genera el evento apartir de la regla.
 	    Context newEvent = r.conclucion;
 	    newEvent.setLevel(maxLevel + 1);
 	    eb.add(newEvent);
-	    rbLocal.delete(r);//Elimina la regla de las psobiles reglas aplicables.
-	    r = findRule(rbLocal);//Busca la siguiente regla que se pueda aplicar.
+	    rbLocal.delete(r);// Elimina la regla de las psobiles reglas aplicables.
+	    r = findRule(rbLocal);// Busca la siguiente regla que se pueda aplicar.
 
 	}
-	
-	ihm.showEvent(eb.getEvents());//Mostrar resultados.
+
+	ihm.showEvent(eb.getEvents());// Mostrar resultados.
     }
 }

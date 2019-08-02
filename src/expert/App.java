@@ -12,7 +12,6 @@ import java.util.LinkedList;
  * Autor: Virginie MATHIVET
  * Implementación y optimización: DanielRosillo;
  * GitHub:@DanielRosillo
- * 
  * Esta clase representa un sistema experto.
  */
 public class App implements HMI

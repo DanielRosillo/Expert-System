@@ -1,5 +1,4 @@
 package expert;
-
 /**
  * @author Daniel Rosillo; Esta clase representa el contexto de trabajo de los
  *         eventos. Un evento pasa a ser un hecho cuando el agente adquiere

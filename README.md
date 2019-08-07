@@ -1,5 +1,8 @@
 #  Poly - Expert System
 
+## The demo version operates when runs the App.java
+## Ejecute App.java para arrancar la demo del agente.
+
 ![experto](https://user-images.githubusercontent.com/23446483/61990315-c780ac80-b003-11e9-8c86-e0a0c3dcfbc2.PNG)
 
 ![oo](https://user-images.githubusercontent.com/23446483/61990323-debf9a00-b003-11e9-9f89-8d9ced964119.PNG)
@@ -26,9 +29,6 @@ This project is licensed under the MIT License - see the [LICENSE.md] file for d
 
 ## Support && Feedback
 https://twitter.com/DanielRosillo22
-
-## The demo version operates when runs the App.java
-## Ejecute App.java para arrancar la demo del agente.
 
 ## TRY THE NEW WAY TO HANDLE YOUR PASSWORDS ON ANDROID
 [<a href='https://play.google.com/store/apps/details?id=com.bookmanager.danielrosillo.bookmanager&hl=es_419&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>](url)

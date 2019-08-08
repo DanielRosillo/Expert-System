@@ -1,6 +1,6 @@
 #  Poly - Expert System
 
-## The demo version operates when runs the App.java
+## The demo version operates when runs the file App.java
 ## Ejecute App.java para arrancar la demo del agente.
 
 ![experto](https://user-images.githubusercontent.com/23446483/61990315-c780ac80-b003-11e9-8c86-e0a0c3dcfbc2.PNG)
